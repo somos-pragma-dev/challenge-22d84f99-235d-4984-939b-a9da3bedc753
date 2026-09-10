@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: microservices-app
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  source:
+    repoURL: https://github.com/your-repo/microservices
+    targetRevision: HEAD
+    path: helm-charts
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
